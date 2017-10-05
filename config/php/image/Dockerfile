@@ -49,6 +49,7 @@ RUN \
   git \
   curl \
   wget \
+  mysql-client \
   librabbitmq-dev \
   libzip-dev \
   libzip2
