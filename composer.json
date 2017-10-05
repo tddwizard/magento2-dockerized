@@ -1,6 +1,6 @@
 {
-  "name": "arvatoscm/dockerize-magento2",
-  "description": "Docker infrastructure definitions for Magento 2",
+  "name": "tddwizard/magento2-dockerized",
+  "description": "Docker infrastructure definitions for Magento 2 dev/test environment. Based on arvatoscm/dockerize-magento2",
   "license": "Apache-2.0",
   "authors": [
       {
@@ -8,10 +8,16 @@
           "email": "andy@ak7.io",
           "homepage": "https://github.com/andreaskoch",
           "role": "Author"
+      },
+      {
+          "name": "Fabian Schmengler",
+          "email": "fabian@schmengler-se.de",
+          "homepage": "https://www.schmengler-se.de",
+          "role": "Author"
       }
   ],
   "type": "magento2-component",
-  "homepage": "https://github.com/arvatoSCM/dockerize-magento2",
+  "homepage": "https://github.com/tddwizard/magento2-dockerized",
   "extra": {
     "map": [
       [

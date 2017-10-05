@@ -2,11 +2,11 @@
 
 A composer package for dockerizing Magento 2
 
-The composer package **arvatoscm/dockerize-magento2** deploys docker infrastructure defintion files such as [docker-compose.yml](docker-compose.yml) to your Magento 2 root folder and enables you to host your Magento 2 shops without having to install Apache/Nginx, MySQL or PHP on your system.
+The composer package **tddwizard/magento2-dockerized** deploys docker infrastructure defintion files such as [docker-compose.yml](docker-compose.yml) to your Magento 2 root folder and enables you to host your Magento 2 shops without having to install Apache/Nginx, MySQL or PHP on your system.
 
 ## Package Name
 
-`arvatoscm/dockerize-magento2`
+ `tddwizard/magento2-dockerized` (fork of `tddwizard/magento2-dockerized`)
 
 ## Software Requirements
 
@@ -16,10 +16,10 @@ If you are a Mac or Windows user, use the [Docker Toolbox](https://www.docker.co
 
 ## Installation
 
-Add `arvatoscm/dockerize-magento2` to your existing Magento 2 shop:
+Add `tddwizard/magento2-dockerized` to your existing Magento 2 shop:
 
 ```bash
-composer require --ignore-platform-reqs arvatoscm/dockerize-magento2
+composer require --ignore-platform-reqs tddwizard/magento2-dockerized
 chmod +x bin/console
 ```
 
