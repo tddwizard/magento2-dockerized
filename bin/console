@@ -135,6 +135,27 @@ executeInDocker() {
 }
 
 #######################################
+# Execute magerun inside the php docker
+# container with all given arguments.
+# Globals:
+#   None
+# Arguments:
+#   *
+# Returns:
+#   None
+#######################################
+executeMagerunInDocker() {
+
+  if [ $(isRunning) = false ]; then
+    echo >&2 "Docker is not running. Please start the containers first.";
+    exit 1;
+  fi
+
+  # pass the arguments to the bin/magento script inside the PHP container
+  docker-compose exec php bash -c "/usr/bin/n98-magerun2 $*"
+}
+
+#######################################
 # Generate new SSL certificates
 # Globals:
 #   SSLKEYFILEPATH
@@ -382,6 +403,7 @@ usage() {
   echo "Actions:\n"
   printf "  %-15s%-30s\n" "install" "Install Magento"
   printf "  %-15s%-30s\n" "exec" "Execute bin/magento inside docker"
+  printf "  %-15s%-30s\n" "magerun" "Execute n98-magerun2 inside docker"
   echo ""
   printf "  %-15s%-30s\n" "start" "Start the server and all of its components"
   printf "  %-15s%-30s\n" "restart" "Restart the server"
@@ -398,6 +420,11 @@ case "$1" in
     exec)
     shift 1
     executeInDocker $*
+    ;;
+
+    magerun)
+    shift 1
+    executeMagerunInDocker $*
     ;;
 
     start)
