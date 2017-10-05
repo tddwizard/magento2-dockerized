@@ -20,6 +20,7 @@ services:
 
 
   php:
+    build: ./config/php/image
     image: arvato/magento2-php:latest
     volumes:
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
@@ -77,7 +78,7 @@ services:
       - back
 
   integration:
-    build: Docker/integration-test-container
+    build: ./config/integration-test/image
     volumes:
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
       - ./config/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
