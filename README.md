@@ -6,7 +6,7 @@ The composer package **tddwizard/magento2-dockerized** deploys docker infrastruc
 
 ## Package Name
 
- `tddwizard/magento2-dockerized` (fork of `tddwizard/magento2-dockerized`)
+ `tddwizard/magento2-dockerized` (fork of `arvatoscm/dockerize-magento2`)
 
 ## Software Requirements
 
