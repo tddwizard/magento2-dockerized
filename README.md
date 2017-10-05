@@ -106,7 +106,7 @@ After customizing the parameters just run trigger the installation with `bin/con
 
 After the integration test container is set up as described above, you can run the tests with this command:
 
-    docker-compose run --rm integration
+    docker-compose -f docker-compose.yml -f docker-compose.integration-tests.yml run --rm integration
 
 ## Licensing
 
