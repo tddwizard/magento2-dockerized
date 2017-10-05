@@ -33,6 +33,10 @@
         ".env"
       ],
       [
+        "bin/php",
+        "bin/php"
+      ],
+      [
         "bin/console",
         "bin/console"
       ]
