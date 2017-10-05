@@ -103,7 +103,7 @@ RUN mkdir /opt/go && export GOPATH=/opt/go && go get github.com/mailhog/mhsendma
 RUN touch /usr/local/etc/php/mailhog.ini
 
 # Install Magerun
-RUN curl -sS -O https://files.magerun.net/n98-magerun2.phar
-    && chmod +x ./n98-magerun2.phar
+RUN curl -sS -O https://files.magerun.net/n98-magerun2.phar \
+    && chmod +x ./n98-magerun2.phar \
     && mv ./n98-magerun2.phar /usr/bin/n98-magerun2
 
