@@ -57,6 +57,7 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - magento2mysqldata:/var/lib/mysql
+      - ./config/mysql/integration-test-db.sql:/docker-entrypoint-initdb.d/integration-test-db.sql
     networks:
       - back
 
