@@ -58,6 +58,7 @@ services:
     volumes:
       - magento2mysqldata:/var/lib/mysql
       - ./config/mysql/integration-test-db.sql:/docker-entrypoint-initdb.d/integration-test-db.sql
+      - ./config/mysql/functional-test-db.sql:/docker-entrypoint-initdb.d/functional-test-db.sql
     networks:
       - back
 
