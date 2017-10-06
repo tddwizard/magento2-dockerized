@@ -1,0 +1,25 @@
+version: '2'
+services:
+  selenium:
+    image: selenium/standalone-firefox:2.53.1
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+    networks:
+      - back
+      - front
+  functional:
+    build: ./config/functional-test/image
+    volumes:
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./config/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
+    volumes_from:
+      - appdata
+    env_file: .env
+    user: www-data
+    networks:
+      - back
+    depends_on:
+      - mysql
+      - cache
+      - web
