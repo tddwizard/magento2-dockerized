@@ -19,6 +19,8 @@ services:
     user: www-data
     networks:
       - back
+    links:
+      - "web:magento.lh"
     depends_on:
       - mysql
       - cache
