@@ -8,6 +8,10 @@ services:
     networks:
       - back
       - front
+    links:
+      - "web:www.magento.lh"
+    depends_on:
+      - web
   functional:
     build: ./config/functional-test/image
     volumes:
@@ -20,8 +24,7 @@ services:
     networks:
       - back
     links:
-      - "web:magento.lh"
+      - "web:www.magento.lh"
     depends_on:
-      - mysql
-      - cache
       - web
+      - selenium

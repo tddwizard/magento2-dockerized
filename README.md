@@ -92,9 +92,8 @@ After customizing the parameters just run trigger the installation with `bin/con
 ## Integration Tests
 
 ### Setup 
-1. Create database `magento_integration_tests` (easiest way is to open phpmyadmin at [http://dockerized-magento.local:8080/](http://dockerized-magento.local:8080/) and login as root)
-2. Copy `magento/dev/tests/integration/etc/install-config-mysql.php.dist` to `magento/dev/tests/integration/etc/install-config-mysql.php`
-3. Change database parameters in `magento/dev/tests/integration/etc/install-config-mysql.php`:
+1. Copy `dev/tests/integration/etc/install-config-mysql.php.dist` to `dev/tests/integration/etc/install-config-mysql.php`
+2. Change database parameters in `dev/tests/integration/etc/install-config-mysql.php`:
 
         'db-host' => 'mysql',
         'db-user' => 'root',
@@ -107,6 +106,33 @@ After customizing the parameters just run trigger the installation with `bin/con
 After the integration test container is set up as described above, you can run the tests with this command:
 
     docker-compose -f docker-compose.yml -f docker-compose.integration-tests.yml run --rm integration
+
+## Functional Tests
+
+### Setup
+1. run `composer install` in `dev/tests/functional`
+2. copy `dev/tests/functional/phpunit.xml.dist` to `dev/tests/functional/phpunit.xml` and change values for `app_frontend_url` and `app_backend_url`. It is also a good idea to add `stopOnError="true"` to the `<phpunit>` element.
+3. copy `dev/tests/functional/etc/config.xml.dist` to `dev/tests/functional/etc/config.xml` and change values for `backendLogin`, `backendPassword`, `appBackendUrl` in `<application>`. Also, add the following `server` node below `</install>`:
+
+          <server>
+            <item name="selenium" type="default" browser="Mozilla Firefox" browserName="firefox" host="selenium" port="4444" seleniumServerRequestsTimeout="30" sessionStrategy="shared">
+              <desiredCapabilities>
+                <platform>ANY</platform>
+              </desiredCapabilities>
+            </item>
+          </server>
+
+    You might need to change `host="selenium"` to the IP address of the selenium service, e.g. 172.20.0.6 (the troubleshooting check pings the service and shows the IP, see below)
+
+### Running Tests
+
+After the functional integration test container is set up as described above, you can run the tests with this command:
+
+    docker-compose -f docker-compose.yml -f docker-compose.functional-tests.yml run --rm functional
+
+Add the `-t` parameter to enable troubleshooting checks before the test suite starts. Pass arguments to PHPUnit after `--`, e.g.
+
+    docker-compose -f docker-compose.yml -f docker-compose.functional-tests.yml run --rm functional -- --filter MyTestCase
 
 ## Licensing
 
