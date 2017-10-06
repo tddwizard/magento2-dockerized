@@ -25,6 +25,10 @@
         "docker-compose.yml"
       ],
       [
+        "docker-compose.integration-tests.yml",
+        "docker-compose.integration-tests.yml"
+      ],
+      [
         "config",
         "config"
       ],
