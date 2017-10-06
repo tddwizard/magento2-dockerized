@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 set -e
+
+while getopts ":t" opt; do
+  case $opt in
+    t)
+      TROUBLESHOOTING=1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
 #
 # does not work in container?
 #
@@ -21,13 +33,16 @@ echo -e "\033[33mSetting Magento configuration...\033[0m"
 cd dev/tests/functional
 cp ./.htaccess.sample ./.htaccess
 
-echo -e "\033[33mTroubleshooting...\033[0m"
 cd ./utils
-php -f mtf troubleshooting:check-all
 
+if [ "$TROUBLESHOOTING" = 1 ]; then
+    echo -e "\033[33mTroubleshooting...\033[0m"
+    php -f mtf troubleshooting:check-all
+fi
 echo -e "\033[33mGenerating code...\033[0m"
 /usr/local/bin/php generate.php
 
-echo -e "\033[33mRunning tests...\033[0m"
 cd ..
-/usr/local/bin/php ../../../vendor/bin/phpunit
+
+echo -e "\033[33mRunning tests...\033[0m"
+/usr/local/bin/php vendor/bin/phpunit
